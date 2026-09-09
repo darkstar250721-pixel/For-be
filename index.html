@@ -6,32 +6,41 @@
 
 <style>
 body {
+  margin: 0;
   background: radial-gradient(circle, #000000, #1a0000);
   color: #ff99cc;
-  text-align: center;
   font-family: Arial, sans-serif;
   overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container giữa màn hình */
+.container {
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
 }
 
 /* Tiêu đề */
 h1 {
-  margin-top: 80px;
-  font-size: 40px;
-  animation: fadeIn 2s ease-in-out;
+  font-size: 42px;
+  margin-bottom: 10px;
 }
 
-/* Chữ chúc */
+/* Nội dung */
 .message {
   font-size: 20px;
-  margin-top: 20px;
   opacity: 0;
-  animation: showText 4s forwards;
+  animation: showText 3s forwards;
 }
 
-/* Trái tim lớn */
+/* Tim chính */
 .heart {
-  font-size: 60px;
-  margin-top: 30px;
+  font-size: 70px;
+  margin-top: 25px;
   animation: beat 1s infinite;
 }
 
@@ -39,7 +48,8 @@ h1 {
 .floating-heart {
   position: absolute;
   color: pink;
-  animation: floatUp 5s linear infinite;
+  animation: floatUp linear infinite;
+  pointer-events: none;
 }
 
 /* Animations */
@@ -49,7 +59,7 @@ h1 {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
+  from { opacity: 0; transform: translateY(-30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -72,33 +82,36 @@ h1 {
 
 <body>
 
-<h1>Chúc bé học ngoan ❤️</h1>
+<div class="container">
+  <h1>Chúc bé học ngoan ❤️</h1>
 
-<div class="message">
-  Mong bé luôn vui vẻ, học giỏi và gặp thật nhiều may mắn 🍀<br>
-  Có anh luôn đứng phía sau ủng hộ bé nè 😚
+  <div class="message">
+    Mong bé luôn vui vẻ, học giỏi và gặp thật nhiều may mắn 🍀<br>
+    Có anh luôn ở đây ủng hộ bé mỗi ngày 😚
+  </div>
+
+  <div class="heart">💖</div>
 </div>
 
-<div class="heart">💖</div>
-
 <script>
-// Tạo tim bay random
+// tạo tim bay random
 function createHeart() {
   const heart = document.createElement("div");
   heart.className = "floating-heart";
   heart.innerHTML = "💗";
 
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (20 + Math.random() * 30) + "px";
+  heart.style.fontSize = (15 + Math.random() * 35) + "px";
+  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
 
   document.body.appendChild(heart);
 
   setTimeout(() => {
     heart.remove();
-  }, 5000);
+  }, 6000);
 }
 
-setInterval(createHeart, 300);
+setInterval(createHeart, 250);
 </script>
 
 </body>
